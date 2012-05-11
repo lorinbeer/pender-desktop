@@ -37,28 +37,10 @@ var PenderEvent = {
 	_listeners[event].push (listener);
     },
 
-
-function PenderEvent() {
-    this._eventlisteners = {};
-}
-
-/**
- * register an event listener
- */
-prototype.PenderEvent.registerEventListener (eventType,listener) {
-
-}
-
-
-prototype.PenderEvent.fire (eventType, firer) {
-    var i = 0;
-    var listeners = this._eventlisteners[eventType];
-    if ( !(typeof callbacks === "undefined")) {
-	for (i = 0; i < listeners.length; i+=1) {
-	    listeners[i].call (this,eventType);
+    fire : function (event,firer) {
+	var i = 0;
+	if (!(typeof _listeners[event] === "unidentified")) {
+	    listeners[i].handle(event,firer);
 	}
-    }
-    else {
-	console.log ("Warning: could find no registered listeners for event type " + eventType );
     }
 }
