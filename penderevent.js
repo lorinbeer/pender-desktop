@@ -39,8 +39,10 @@ var PenderEvent = {
 
     fire : function (event,firer) {
 	var i = 0;
-	if (!(typeof this._listeners[event] === "unidentified")) {
-	    this._listeners[i].handle(event,firer);
+	if (!(typeof this._listeners[event] === "undefined")) {
+	    for (i = 0; i < this._listeners[event].length; i+=1) {
+		this._listeners[i].handle(event,firer);
+	    }
 	}
     }
 }
