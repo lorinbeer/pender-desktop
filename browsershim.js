@@ -19,36 +19,54 @@
  *  Globals
  */
 
-//provides global access to canvas as pcanvas, same target name as mobile versions of pender
-var canvas = null; 
-var pctx = null;
-var canvasDefaultId = "pendercanvas";
-function penderInit (canvasid) {
-    canvasid = canvasid || canvasDefaultId;
+var Pender = {
 
-    //initiazile global variables
-    canvas = document.getElementById (canvasid);
+    canvas : null,
 
-    if (canvas.getContext) {
-        pctx = canvas.getContext("2d");
+    ctx    : null,
+
+    images : {},
+
+    canvasDefaultId : "pendercanvas",
+
+    init : function (canvasid) {
+	canvasid = canvasid || this.canvasDefaultId;
+	this.canvas = document.getElementById (canvasid);
+	if (this.canvas.getContext) {
+	    this.ctx = this.canvas.getContext("2d");
+	}
+	else {
+	    throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
+	}
+        PenderEvent.addListener ("penderImageOnLoad",this);
+    },
+
+    loadImages : function (imagepaths) {
+        var i = 0;
+	var img = null;
+        var pending = imagepaths.length;
+        for (i = 0; i < imagepaths.length; i+=1) {
+	    img = new Image();
+            img.onload = function() {
+		images[imagepaths[i]] = img;
+                pending-=1;
+		if (pending == 0) {
+		    PenderEvent.fire("PenderImagesLoaded",this);
+		}
+	    }
+            img.src = imagepaths[i];
+	}
     }
-    else {
-	throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
-    }
+
 }
 
-function loadImage( path ) {
-
-  
-
-}
 
 function testdraw() {
 
-    pctx.fillStyle = "rgb(200,0,0)";  
-    pctx.fillRect (10, 10, 55, 50);  
+    Pender.ctx.fillStyle = "rgb(200,0,0)";  
+    Pender.ctx.fillRect (10, 10, 55, 50);  
   
-    pctx.fillStyle = "rgba(0, 0, 200, 0.5)";  
-    pctx.fillRect (30, 30, 55, 50);
+    Pender.ctx.fillStyle = "rgba(0, 0, 200, 0.5)";  
+    Pender.ctx.fillRect (30, 30, 55, 50);
 
 }
