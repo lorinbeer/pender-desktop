@@ -31,16 +31,16 @@ var PenderEvent = {
     _listeners : {},
 
     addListener : function (event,listener) {
-	if (typeof _listeners[event] === "undefined") {
-	    _listeners[event] = [];
+	if (typeof this._listeners[event] === "undefined") {
+	    this._listeners[event] = [];
 	}
-	_listeners[event].push (listener);
+	this._listeners[event].push (listener);
     },
 
     fire : function (event,firer) {
 	var i = 0;
-	if (!(typeof _listeners[event] === "unidentified")) {
-	    listeners[i].handle(event,firer);
+	if (!(typeof this._listeners[event] === "unidentified")) {
+	    this._listeners[i].handle(event,firer);
 	}
     }
 }
