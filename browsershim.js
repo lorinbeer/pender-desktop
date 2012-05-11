@@ -21,14 +21,18 @@
 
 var Pender = {
 
+    //html5 Canvas element
     canvas : null,
-
+    //canvas 2d rendering context
     ctx    : null,
-
+    //preloaded texture assets
     images : {},
-
+    //default or expected id of the Canvas element
     canvasDefaultId : "pendercanvas",
-
+    
+    /**
+     *  Initialize Pender
+     */
     init : function (canvasid) {
 	canvasid = canvasid || this.canvasDefaultId;
 	this.canvas = document.getElementById (canvasid);
@@ -41,19 +45,26 @@ var Pender = {
         PenderEvent.addListener ("penderImageOnLoad",this);
     },
 
+
+    /**
+     * load images specified by an array
+     */
     loadImages : function (imagepaths) {
         var i = 0;
 	var img = null;
         var pending = imagepaths.length;
+        
+	var imgcb = function() {
+	    Pender.images[imagepaths[i]] = img;
+            pending-=1;
+	    if (pending == 0) {
+		PenderEvent.fire("PenderImagesLoaded",this);
+	    }
+	}
+
         for (i = 0; i < imagepaths.length; i+=1) {
 	    img = new Image();
-            img.onload = function() {
-		images[imagepaths[i]] = img;
-                pending-=1;
-		if (pending == 0) {
-		    PenderEvent.fire("PenderImagesLoaded",this);
-		}
-	    }
+            img.onload = imgcb;
             img.src = imagepaths[i];
 	}
     }

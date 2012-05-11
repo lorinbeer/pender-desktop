@@ -4,6 +4,7 @@
 
     <title>Pender HTML5 Canvas Shim Example</title>
 
+    <script type="text/javascript" src="penderevent.js"></script>
     <script type="text/javascript" src="browsershim.js"></script>
 
   </head>
@@ -14,8 +15,8 @@
 
     <script>
 
-        penderInit("pendercanvas");
-        testdraw();
+        Pender.init("pendercanvas");
+        Pender.loadImages( ["assets/build_bot_map.png"] );
 
     </script>
   
