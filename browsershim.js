@@ -43,6 +43,7 @@ var Pender = {
 	    throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
 	}
         PenderEvent.addListener ("penderImageOnLoad",this);
+
     },
 
 

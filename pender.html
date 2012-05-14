@@ -7,6 +7,8 @@
     <script type="text/javascript" src="penderevent.js"></script>
     <script type="text/javascript" src="browsershim.js"></script>
 
+    <script type="text/javascript" src="client/penderdemo.js"></script>
+
   </head>
   
   <body>
@@ -16,7 +18,13 @@
     <script>
 
         Pender.init("pendercanvas");
-        Pender.loadImages( ["client/assets/build_bot_map.png"] );
+//        Pender.loadImages( ["client/assets/build_bot_map.png"] );
+	
+
+	//init();
+
+	
+	setInterval(draw,100);
 
     </script>
   
