@@ -93,8 +93,7 @@ function AnimatedSprite(anim) {
 
 //==============================================================================
 
-var cats = [];
-var catnumb = 8;
+
 
 var img = new Image();
 img.src = "client/assets/build_bot_map.png";
