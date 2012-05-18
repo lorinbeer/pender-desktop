@@ -30,6 +30,7 @@ var Pender = {
     //default or expected id of the Canvas element
     canvasDefaultId : "pendercanvas",
     
+    ready : true,
     /**
      *  Initialize Pender
      */
@@ -70,7 +71,12 @@ var Pender = {
     },
     
     setInterval : function (func,spf) {
-	setInterval (func,spf);
+	var self = this;
+	setInterval (function() {
+		if (self.ready) {
+		    func();
+		}
+	    } ,spf);
     }
 
 }
