@@ -55,9 +55,15 @@ function Animation(framemap, framenumb, cols, rows, framewidth, frameheight, bor
 	//absolute value of current frame index is used, allowing for negative frame counts
 	var curframe = this._currentframe<0? -1 * this._currentframe : this._currentframe;
 	var frametop = this._frames[curframe];
-	Pender.ctx.drawImage( this._framemap, frametop.x, frametop.y, this._framewidth, this._frameheight, dx, dy, this._framewidth, this._frameheight   );
+	
+	Pender.ctx.drawImage(Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight,
+			     dx, dy, dWidth, dHeight);
+
+	//Pender.ctx.drawImage( Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight, dx, dy, this._framewidth, this._frameheight   );
 	this._frameupdate();
     }
+
+
 }
 
 function AnimatedSprite(anim) {
@@ -91,20 +97,20 @@ function AnimatedSprite(anim) {
 
 }
 
-//==============================================================================
-var img = new Image();
-img.src = "client/assets/build_bot_map.png";
-var anim = new Animation( img, 9, 4, 3, 254, 254, 1 );
-console.log( anim._frames );
-var sprite  = new AnimatedSprite(anim);
-//==============================================================================
+
+
+
+var sprite = null;
+//==============================================================================                                                                                                    
 function init() {
-    
+    buildbotid = Pender.loadImage( "client/assets/build_bot_map.png" );
+    var anim = new Animation (buildbotid, 9, 4, 3, 254, 254, 1);
+    sprite  = new AnimatedSprite(anim);
 }
-//==============================================================================
+
+
 function demodraw() {
-    Pender.ctx.clearRect(0,0,Pender.canvas.width,Pender.canvas.height);    
-    console.log( sprite );
-    sprite._animation.draw (Pender.ctx, 10,10, 255, 255);
+    sprite._animation.draw( buildbotid,0, 0, 256, 256 );
 }
 //==============================================================================
+
