@@ -67,39 +67,32 @@ function Animation(framemap, framenumb, cols, rows, framewidth, frameheight, bor
 }
 
 function AnimatedSprite(anim) {
-
+    this.xpos = 0;
+    this.ypos = 0;
+    this.xvel = Math.random()*5;
+    this.yvel = Math.random()*5;
+    this.width = 128;
+    this.height = 128;
     this._animation = anim;
-
-
-    this.init = function (framemap, framenumb, cols, rows, framewidth, frameheight) {
-	var i = 0;
-	var done = false;
-	var top = new Point(0,0);
+    var self = this;
+    
+   this.draw = function(texid) {
+	self.xpos = self.xpos+ self.xvel;
+	self.ypos = self.ypos+ self.yvel;
+	if( self.xpos < 0 || self.xpos >= 400-self.width/*Pender.canvas.width*/) {
+	    self.xvel = self.xvel * -1; 
+	}
+	if(self.ypos < 0 || self.ypos >= 400-self.height/*Pender.canvas.height */) { 
+	    self.yvel = self.yvel * -1; 
+	}
 	
-	//initialize
-	this._framemap = framemap;
-	this._framewidth = framewidth;
-	this._frameheight = frameheight;
-	/*
-	for (var row  = 0; row < rows && !done; row++) {
-	    for (var col = 0; col < cols && !done; col++) {
-		i+=1;
-		if( i >= framenumb ) { done = true; }
-		var top = new Point(col * frameheight+col+1, row * framewidth+row+1);
-		var bot = new Point(top.x + frameheight, top.y + framewidth);
-
-		this._frames.push ( [top,bot] );
-	    }
-	}*/
-	this._frames;
-
-    }
-
+	this._animation.draw( texid, self.xpos, self.ypos, self.width, self.height );
+    };
 }
 
 
 var Bots = new function () {
-    this.numb = 1;
+    this.numb = 10;
     this.bots = [];
     this.texid = 0;
     var self = this;
@@ -112,15 +105,16 @@ var Bots = new function () {
 	    self.bots.push (new AnimatedSprite(anim));
 	}
     };
-
+    
     this.draw =  function() {
 	Pender.ctx.clearRect(0,0,Pender.canvas.width, Pender.canvas.height);
       	for(var i = 0; i < self.numb; i++) {
-	     self.bots[i]._animation.draw(self.texid, 0, 0, 256, 256 );
+	    self.bots[i].draw(self.texid);    	     
 	}
     };
     
 }
+
 function init() {
     Bots.init();
 }
