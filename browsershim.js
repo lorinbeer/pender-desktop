@@ -26,7 +26,7 @@ var Pender = {
     //canvas 2d rendering context
     ctx    : null,
     //preloaded texture assets
-    images : {},
+    images : [],
     //default or expected id of the Canvas element
     canvasDefaultId : "pendercanvas",
     
@@ -42,40 +42,37 @@ var Pender = {
 	else {
 	    throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
 	}
-        PenderEvent.addListener ("penderImageOnLoad",this);
+	 PenderEvent.addListener ("penderImageOnLoad",this);
     },
 
 
     /**
      * load images specified by an array
      */
-    loadImages : function (imagepaths) {
-        var i = 0;
+    loadImage : function (path) {
+	var i = 0;
 	var img = null;
-        var pending = imagepaths.length;
-        
+
 	var imgcb = function() {
-	    Pender.images[imagepaths[i]] = img;
-            pending-=1;
-	    if (pending == 0) {
-		PenderEvent.fire("PenderImagesLoaded",this);
-	    }
+	    Pender.images.push(img);
+	    console.log(" EHYHEY");
+	    // pending-=1;
 	}
 
-        for (i = 0; i < imagepaths.length; i+=1) {
-	    img = new Image();
-            img.onload = imgcb;
-            img.src = imagepaths[i];
-	}
+        img = new Image(); 
+        img.onload = imgcb;
+	img.src = path;
+	return i;
     },
-
+    
     getImage : function (id) {
-
+	return(this.images[id]);
     },
-
+    
     setInterval : function (func,spf) {
 	setInterval (func,spf);
     }
+
 }
 
 
