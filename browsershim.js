@@ -43,7 +43,6 @@ var Pender = {
 	    throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
 	}
         PenderEvent.addListener ("penderImageOnLoad",this);
-
     },
 
 
@@ -68,8 +67,15 @@ var Pender = {
             img.onload = imgcb;
             img.src = imagepaths[i];
 	}
-    }
+    },
 
+    getImage : function (id) {
+
+    },
+
+    setInterval : function (func,spf) {
+	setInterval (func,spf);
+    }
 }
 
 

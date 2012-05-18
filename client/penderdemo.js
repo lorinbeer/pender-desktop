@@ -92,43 +92,19 @@ function AnimatedSprite(anim) {
 }
 
 //==============================================================================
-
-
-
 var img = new Image();
 img.src = "client/assets/build_bot_map.png";
 var anim = new Animation( img, 9, 4, 3, 254, 254, 1 );
 console.log( anim._frames );
-
 var sprite  = new AnimatedSprite(anim);
 //==============================================================================
-
 function init() {
-
-    var i = 0;
-
-    for (i = 0; i < catnumb; i += 1) {
-        console.log("it's a new cat!");
-        cats[i] = new Bot();
-    }
-
+    
 }
-
 //==============================================================================
-
-function draw() {
+function demodraw() {
     Pender.ctx.clearRect(0,0,Pender.canvas.width,Pender.canvas.height);    
     console.log( sprite );
-    sprite._animation.draw( Pender.ctx, 10,10, 255, 255 );
-    var i = 0;
-
-
-    
-    //for (i = 0; i < catnumb; i += 1) {
-    //  cats[i].drawme();
-
-    //}
-
+    sprite._animation.draw (Pender.ctx, 10,10, 255, 255);
 }
-
 //==============================================================================
