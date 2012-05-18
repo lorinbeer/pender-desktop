@@ -113,15 +113,14 @@ var Bots = new function () {
 	}
     };
 
-    this.draw =  function() {
-	Pender.ctx.clearRect(0,0,Pender.canvas.width, Pender.canvas.height);
-      	for(var i = 0; i < self.numb; i++) {
+   );
 	     self.bots[i]._animation.draw(self.texid, 0, 0, 256, 256 );
 	}
     };
     
 }
 function init() {
-    Bots.init();
+    console.log(Bots.numb);
+    //Bots.init();
 }
 
