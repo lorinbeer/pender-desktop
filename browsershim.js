@@ -16,15 +16,16 @@
  */
 
 /**
- *  Globals
+ * Pender
+ * small shim allowing Pender Client projects to run on desktop browsers
  */
 
 var Pender = {
 
     //html5 Canvas element
-    canvas : null,
+    canvaselem : null,
     //canvas 2d rendering context
-    ctx    : null,
+    canvas : null,
     //preloaded texture assets
     images : [],
     //default or expected id of the Canvas element
@@ -36,14 +37,14 @@ var Pender = {
      */
     init : function (canvasid) {
 	canvasid = canvasid || this.canvasDefaultId;
-	this.canvas = document.getElementById (canvasid);
-	if (this.canvas.getContext) {
-	    this.ctx = this.canvas.getContext("2d");
+	this.canvaselem = document.getElementById (canvasid);
+	if (this.canvaselem.getContext) {
+	    this.canvas = this.canvaselem.getContext("2d");
 	}
 	else {
 	    throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
 	}
-	 PenderEvent.addListener ("penderImageOnLoad",this);
+	PenderEvent.addListener ("penderImageOnLoad",this);
     },
 
 
@@ -55,8 +56,8 @@ var Pender = {
 	var img = null;
 
 	var imgcb = function() {
+	    
 	    Pender.images.push(img);
-	    console.log(" EHYHEY");
 	    // pending-=1;
 	}
 
@@ -77,7 +78,9 @@ var Pender = {
 		    func();
 		}
 	    } ,spf);
-    }
+    },
+
+    _imgEnd : 0
 
 }
 

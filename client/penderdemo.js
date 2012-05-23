@@ -56,7 +56,7 @@ function Animation(framemap, framenumb, cols, rows, framewidth, frameheight, bor
 	var curframe = this._currentframe<0? -1 * this._currentframe : this._currentframe;
 	var frametop = this._frames[curframe];
 	
-	Pender.ctx.drawImage(Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight,
+	Pender.canvas.drawImage(Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight,
 			     dx, dy, dWidth, dHeight);
 
 	//Pender.ctx.drawImage( Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight, dx, dy, this._framewidth, this._frameheight   );
@@ -107,7 +107,7 @@ var Bots = new function () {
     };
     
     this.draw =  function() {
-	Pender.ctx.clearRect(0,0,Pender.canvas.width, Pender.canvas.height);
+	Pender.canvas.clearRect(0,0,Pender.width, Pender.height);
       	for(var i = 0; i < self.numb; i++) {
 	    self.bots[i].draw(self.texid);    	     
 	}
