@@ -32,6 +32,10 @@ var Pender = {
     canvasDefaultId : "pendercanvas",
     
     ready : true,
+
+    getWidth : function() { return this._width; },
+
+    getHeight : function() { return this._height; },
     /**
      *  Initialize Pender
      */
@@ -40,6 +44,8 @@ var Pender = {
 	this.canvaselem = document.getElementById (canvasid);
 	if (this.canvaselem.getContext) {
 	    this.canvas = this.canvaselem.getContext("2d");
+	    this.height = this.canvaselem.height;
+	    this.width  = this.canvaselem.width;
 	}
 	else {
 	    throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
@@ -47,20 +53,24 @@ var Pender = {
 	PenderEvent.addListener ("penderImageOnLoad",this);
     },
 
-
     /**
-     * load images specified by an array
+     * load image at path
      */
     loadImage : function (path) {
 	var i = 0;
 	var img = null;
+	
+	this.images.push(null);
+        i = this.images.length - 1;
 
 	var imgcb = function() {
-	    
-	    Pender.images.push(img);
-	    // pending-=1;
+	    if(img!=null) {
+		Pender.images[i] = img; 
+	    }
+	    else {
+		throw "Error: image not loaded";
+	    }
 	}
-
         img = new Image(); 
         img.onload = imgcb;
 	img.src = path;
@@ -68,7 +78,12 @@ var Pender = {
     },
     
     getImage : function (id) {
-	return(this.images[id]);
+	if(this.images.length >= id) {
+	    return(this.images[id]);  
+	}
+	else {
+	    return null;
+	}
     },
     
     setInterval : function (func,spf) {
@@ -80,7 +95,11 @@ var Pender = {
 	    } ,spf);
     },
 
-    _imgEnd : 0
+    _imgEnd : 0,
+
+    width : 0,
+
+    height : 0
 
 }
 
