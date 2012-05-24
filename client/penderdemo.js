@@ -41,7 +41,7 @@ function Animation(framemap, framenumb, cols, rows, framewidth, frameheight, bor
 	    for (var row  = 0; row < rows && !done; row++) {
 		for (var col = 0; col < cols && !done; col++) {
 		    top = new Point( col * (frameheight+1)+(col+1)*bordersize, row * (framewidth+1) +(row+1)* bordersize);
-		 
+		    console.log(top);
 		    this._frames.push ( top );
 		    i+=1;
 		    if( i >= framenumb ) { done = true; }
@@ -53,14 +53,14 @@ function Animation(framemap, framenumb, cols, rows, framewidth, frameheight, bor
 
     this.draw = function(ctx, dx, dy, dWidth, dHeight) {
 	//absolute value of current frame index is used, allowing for negative frame counts
-	var curframe = this._currentframe<0? -1 * this._currentframe : this._currentframe;
+       	var curframe = this._currentframe<0? -1 * this._currentframe : this._currentframe;
 	var frametop = this._frames[curframe];
 	
 	Pender.canvas.drawImage(Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight,
 			     dx, dy, dWidth, dHeight);
 
 	//Pender.ctx.drawImage( Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight, dx, dy, this._framewidth, this._frameheight   );
-	this._frameupdate();
+	//this._frameupdate();
     }
 
 
@@ -105,8 +105,15 @@ var Bots = new function () {
 	    self.bots.push (new AnimatedSprite(anim));
 	}
     };
-    
-    this.draw =  function() {
+
+    this.draw = function() { 
+	Pender.canvas.clearRect(0,0,Pender.width,Pender.height);
+	Pender.canvas.fillStyle = "rgb(0,0,0)"; 
+	Pender.canvas.fillRect (10, 10, Pender.width, Pender.height);
+	self.bots[0].draw(self.texid);
+    };
+
+    this.draw1 =  function() {
 	Pender.canvas.clearRect(0,0,Pender.width, Pender.height);
       	for(var i = 0; i < self.numb; i++) {
 	    self.bots[i].draw(self.texid);    	     
