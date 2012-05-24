@@ -51,12 +51,12 @@ function Animation(framemap, framenumb, cols, rows, framewidth, frameheight, bor
     this.initFrames( framenumb );
 
 
-    this.draw = function(ctx, dx, dy, dWidth, dHeight) {
+    this.draw = function(texid, dx, dy, dWidth, dHeight) {
 	//absolute value of current frame index is used, allowing for negative frame counts
        	var curframe = this._currentframe<0? -1 * this._currentframe : this._currentframe;
 	var frametop = this._frames[curframe];
 	
-	Pender.canvas.drawImage(Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight,
+	Pender.canvas.drawImage(Pender.getImage(texid), frametop.x, frametop.y, this._framewidth, this._frameheight,
 			     dx, dy, dWidth, dHeight);
 
 	//Pender.ctx.drawImage( Pender.getImage(0), frametop.x, frametop.y, this._framewidth, this._frameheight, dx, dy, this._framewidth, this._frameheight   );
@@ -98,7 +98,7 @@ var Bots = new function () {
     var self = this;
     this.init = function() {
 	console.log("initing");
-        texid = Pender.loadImage( "client/assets/build_bot_map.png" );
+        texid = Pender.loadImage("client/assets/build_bot_map.png");
 	for (var i = 0; i < self.numb; i++) {
 	    console.log("newbot");
 	    var anim = new Animation (texid, 9, 4, 3, 254, 254, 1);
