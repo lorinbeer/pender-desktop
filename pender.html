@@ -2,23 +2,32 @@
 <html>
   <head>
 
-    <title>Pender HTML5 Canvas Shim Example</title>
+    <title>Pender-desktop</title>
 
     <script type="text/javascript" src="penderevent.js"></script>
     <script type="text/javascript" src="browsershim.js"></script>
 
-    <script type="text/javascript" src="client/penderdemo.js"></script>
+    <!-- Point to demo project here -->
+    <script type="text/javascript" src="demos/client/penderdemo.js"></script>
 
   </head>
   
   <body>
 
+    <!-- Set desired canvas coordinates -->
     <canvas id="pendercanvas" width="800" height="800"></canvas>
 
     <script>
+
+        <!-- initialize Pender, providing the id of the native canvas element you wish to draw to -->
         Pender.init("pendercanvas");
+
+	<!-- initialize demo -->
 	init();
+
+	<!-- register demo draw function -->
 	Pender.setInterval(Bots.draw,50);
+
     </script>
   
   </body>
