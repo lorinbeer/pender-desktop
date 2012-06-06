@@ -1,7 +1,10 @@
-# Pender Desktop
+# Pender Desktop Version 0.1a
 
 2D Hardware accelerated Canvas context for mobile
 this is the Desktop version
+
+##version 0.1a Demoable
+this version of pender is compatible with the contents of the [Pender-demos](https://github.com/doggerelverse/Pender-demos) repo
 
 ##Desktop Shim
 
