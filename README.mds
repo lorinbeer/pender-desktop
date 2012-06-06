@@ -1,4 +1,4 @@
-# Pender
+# Pender Desktop
 
 2D Hardware accelerated Canvas context for mobile
 this is the Desktop version
@@ -19,8 +19,15 @@ On Desktop platforms, Pender provides a basic shim allowing Pender projects to e
 
 the rest of the Pender project:
 
-``````````````````````````````````
-[Pender Android](https://github.com/doggerelverse/Pender-android)
 
-[Pender iOS](https://github.com/doggerelverse/Pender-iOS)
-``````````````````````````````````
+	[Penader Android](https://github.com/doggerelverse/Pender-android)
+
+	[Pender iOS](https://github.com/doggerelverse/Pender-ios)
+
+	[Pender Blackberry](https://github.com/doggerelverse/Pender-blackberry)
+
+	[Pender Windows Phone 7](https://github.com/doggerelverse/Pender-wp7)
+
+	[Pender Desktop](https://github.com/doggerelverse/Pender-desktop)
+
+	[Pender demos](https://github.com/doggerelverse/Pender-demos)(here)

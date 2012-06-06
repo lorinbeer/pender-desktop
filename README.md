@@ -1,4 +1,4 @@
-<h1>Pender</h1>
+<h1>Pender Desktop</h1>
 <p>2D Hardware accelerated Canvas context for mobile
 this is the Desktop version</p>
 <h2>Desktop Shim</h2>
@@ -9,7 +9,15 @@ this is the Desktop version</p>
 <h3>HTML</h3>
 <h3>image library</h3>
 <p>the rest of the Pender project:</p>
-<p>``````````````````````````````````
-<a href="https://github.com/doggerelverse/Pender-android">Pender Android</a></p>
-<p><a href="https://github.com/doggerelverse/Pender-iOS">Pender iOS</a>
-``````````````````````````````````</p>
+<pre><code>[Penader Android](https://github.com/doggerelverse/Pender-android)
+
+[Pender iOS](https://github.com/doggerelverse/Pender-ios)
+
+[Pender Blackberry](https://github.com/doggerelverse/Pender-blackberry)
+
+[Pender Windows Phone 7](https://github.com/doggerelverse/Pender-wp7)
+
+[Pender Desktop](https://github.com/doggerelverse/Pender-desktop)
+
+[Pender demos](https://github.com/doggerelverse/Pender-demos)(here)
+</code></pre>
