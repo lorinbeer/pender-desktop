@@ -9,15 +9,23 @@ this is the Desktop version</p>
 <h3>HTML</h3>
 <h3>image library</h3>
 <p>the rest of the Pender project:</p>
-<pre><code>[Penader Android](https://github.com/doggerelverse/Pender-android)
-
-[Pender iOS](https://github.com/doggerelverse/Pender-ios)
-
-[Pender Blackberry](https://github.com/doggerelverse/Pender-blackberry)
-
-[Pender Windows Phone 7](https://github.com/doggerelverse/Pender-wp7)
-
-[Pender Desktop](https://github.com/doggerelverse/Pender-desktop)
-
-[Pender demos](https://github.com/doggerelverse/Pender-demos)(here)
-</code></pre>
+<ul>
+<li>
+<p><a href="https://github.com/doggerelverse/Pender-android">Penader Android</a></p>
+</li>
+<li>
+<p><a href="https://github.com/doggerelverse/Pender-ios">Pender iOS</a></p>
+</li>
+<li>
+<p><a href="https://github.com/doggerelverse/Pender-blackberry">Pender Blackberry</a></p>
+</li>
+<li>
+<p><a href="https://github.com/doggerelverse/Pender-wp7">Pender Windows Phone 7</a></p>
+</li>
+<li>
+<p><a href="https://github.com/doggerelverse/Pender-desktop">Pender Desktop</a></p>
+</li>
+<li>
+<p><a href="https://github.com/doggerelverse/Pender-demos">Pender demos</a>(here)</p>
+</li>
+</ul>
