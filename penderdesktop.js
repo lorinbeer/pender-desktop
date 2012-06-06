@@ -21,7 +21,13 @@
  */
 
 var Pender = {
+    _imgEnd : 0,
 
+    width : 0,
+
+    height : 0,
+    
+    "pending" : 0,
     //html5 Canvas element
     canvaselem : null,
     //canvas 2d rendering context
@@ -30,60 +36,72 @@ var Pender = {
     images : [],
     //default or expected id of the Canvas element
     canvasDefaultId : "pendercanvas",
-    
+    //ready state
     ready : true,
-
-    getWidth : function() { return this._width; },
-
-    getHeight : function() { return this._height; },
+    
     /**
      *  Initialize Pender
      */
     init : function (canvasid) {
-	canvasid = canvasid || this.canvasDefaultId;
-	this.canvaselem = document.getElementById (canvasid);
-	if (this.canvaselem.getContext) {
-	    this.canvas = this.canvaselem.getContext("2d");
-	    this.height = this.canvaselem.height;
-	    this.width  = this.canvaselem.width;
-	}
-	else {
-	    throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
-	}
-	PenderEvent.addListener ("penderImageOnLoad",this);
+	    canvasid = canvasid || this.canvasDefaultId;
+	    this.canvaselem = document.getElementById(canvasid);
+	    if (this.canvaselem.getContext) {
+	        this.canvas = this.canvaselem.getContext("2d");
+	        this.height = this.canvaselem.height;
+	        this.width  = this.canvaselem.width;
+	    }
+	    else {
+	        throw "Error: canvas id \"" + canvasid + "or " +canvasDefaultId+" not found or not a canvas";
+	    }
+	    PenderEvent.addListener("penderImageOnLoad",this);
     },
 
     /**
      * load image at path
      */
     loadImage : function (path) {
-	var i = 0;
-	var img = null;
-	
-	this.images.push(null);
+	    var i = 0,
+	        img = null,
+	        imgcb = null;
+	    
+	    //call back for Image.onload event    
+	    imgcb = function() {
+    	        if(img!=null) {
+    		        Pender.images[i] = img;
+    		        Pender.pending -= 1;
+    		        if(Pender.pending <= 0) {
+    		            Pender.ready = true;
+		            }
+    	        }
+    	        else {
+    		        throw "Error: image not loaded";
+    	        }
+    	}
+    	//push a null placeholder into the array
+	    this.images.push(null);
+	    //generate an id from the length of the array
         i = this.images.length - 1;
-
-	var imgcb = function() {
-	    if(img!=null) {
-		Pender.images[i] = img; 
-	    }
-	    else {
-		throw "Error: image not loaded";
-	    }
-	}
-        img = new Image(); 
+        //create the new image
+        img = new Image();
+        //set the ready state to false
+        this.ready = false;
+        //increment the pending count
+        this.pending += 1;
+        //set the images callback
         img.onload = imgcb;
-	img.src = path;
-	return i;
+        //set the images source
+	    img.src = path;
+	    //return the unique id generated
+	    return i;
     },
     
     getImage : function (id) {
-	if(this.images.length >= id) {
-	    return(this.images[id]);  
-	}
-	else {
-	    return null;
-	}
+	    if(this.images.length > id) {
+	        return(this.images[id]);
+	    }
+	    else {
+	        return null;
+	    }
     },
     
     setInterval : function (func,spf) {
@@ -94,12 +112,6 @@ var Pender = {
 		}
 	    } ,spf);
     },
-
-    _imgEnd : 0,
-
-    width : 0,
-
-    height : 0
 
 }
 

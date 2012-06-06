@@ -5,7 +5,7 @@
     <title>Pender-desktop</title>
 
     <script type="text/javascript" src="penderevent.js"></script>
-    <script type="text/javascript" src="browsershim.js"></script>
+    <script type="text/javascript" src="penderdesktop.js"></script>
 
     <!-- Point to demo project here -->
     <script type="text/javascript" src="demos/client/penderdemo.js"></script>
@@ -22,11 +22,8 @@
         <!-- initialize Pender, providing the id of the native canvas element you wish to draw to -->
         Pender.init("pendercanvas");
 
-	<!-- initialize demo -->
+	<!-- initialize demo, should register demo draw function with Pender -->
 	init();
-
-	<!-- register demo draw function -->
-	Pender.setInterval(Bots.draw,50);
 
     </script>
   
