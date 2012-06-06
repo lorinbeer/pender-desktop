@@ -30,4 +30,4 @@ the rest of the Pender project:
 
 * [Pender Desktop](https://github.com/doggerelverse/Pender-desktop)
 
-* [Pender demos](https://github.com/doggerelverse/Pender-demos)(here)
+* [Pender demos](https://github.com/doggerelverse/Pender-demos)
